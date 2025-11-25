@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <windows.h>
 typedef struct
 {
     char name[50];
@@ -14,25 +15,27 @@ void printStudentInfo(Student s)
 }
 int main(void)
 {
+    SetConsoleOutputCP(CP_UTF8);
+    SetConsoleCP(CP_UTF8);
     Student class[30];
     char name[50];
     int age;
     float grade;
     int ID;
     int choice;
-    printf("Welcome to the Student Information System.\n");
+    printf("欢迎来到学生档案管理系统\n");
 restart:
-    printf("You want to check information or add new student? Press 0 for check, 1 for add. Press 2 to exit.\n");
+    printf("您想查看信息还是添加新学生？按0查看，按1添加。按2退出。\n");
     scanf("%d", &choice);
     getchar();
     if (choice == 0)
     {
-        printf("Enter student's ID to check: \n");
+        printf("请输入要查看的学生ID：\n");
         scanf("%d", &ID);
         getchar();
         if (ID < 0 || ID >= 30)
         {
-            printf("Invalid ID. Please enter an ID between 0 and 29.\n");
+            printf("无效的ID。请输入0到29之间的ID。\n");
             goto restart;
         }
         printStudentInfo(class[ID]);
@@ -40,24 +43,24 @@ restart:
     }
     else if (choice == 1)
     {
-        printf("Enter student's ID: \n");
+        printf("请输入学生的ID：\n");
         scanf("%d", &ID);
         getchar();
         if (ID < 0 || ID >= 30)
         {
-            printf("Invalid ID. Please enter an ID between 0 and 29.\n");
+            printf("无效的ID。请输入0到29之间的ID。\n");
             goto restart;
         }
-        printf("Enter student's name: \n");
+        printf("请输入学生的姓名：\n");
         fgets(class[ID].name, sizeof(class[ID].name), stdin);
         class[ID].name[strcspn(class[ID].name, "\n")] = '\0';
-        printf("Enter student's age: \n");
+        printf("请输入学生的年龄：\n");
         scanf("%d", &class[ID].age);
         getchar();
-        printf("Enter student's grade: \n");
+        printf("请输入学生的成绩：\n");
         scanf("%f", &class[ID].grade);
         getchar();
-        printf("Student added successfully.\n");
+        printf("学生添加成功。\n");
         goto restart;
     }
     else if (choice == 2)
@@ -66,7 +69,7 @@ restart:
     }
     else
     {
-        printf("Invalid choice. Please try again.\n");
+        printf("无效的选择。请再试一次。\n");
         goto restart;
     }
 }
