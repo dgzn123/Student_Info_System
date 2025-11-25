@@ -23,9 +23,10 @@ int main(void)
     float grade;
     int ID;
     int choice;
+    int number = 0;
     printf("欢迎来到学生档案管理系统\n");
 restart:
-    printf("您想查看信息还是添加新学生？按0查看，按1添加。按2退出。\n");
+    printf("您想查看信息还是添加新学生？按0查看，按1添加，按2查看当前档案信息，按3退出。\n");
     scanf("%d", &choice);
     getchar();
     if (choice == 0)
@@ -61,9 +62,24 @@ restart:
         scanf("%f", &class[ID].grade);
         getchar();
         printf("学生添加成功。\n");
+        number++;
         goto restart;
     }
     else if (choice == 2)
+    {
+        printf("当前学生档案信息：\n");
+        for (int i = 0; i < number; i++)
+        {
+            if (strlen(class[i].name) > 0)
+            {
+                printf("ID: %d\n", i);
+                printStudentInfo(class[i]);
+                printf("---------------------\n");
+            }
+        }
+        goto restart;
+    }
+    else if (choice == 3)
     {
         return 0;
     }
