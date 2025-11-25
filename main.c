@@ -9,9 +9,9 @@ typedef struct
 } Student;
 void printStudentInfo(Student s)
 {
-    printf("Name: %s\n", s.name);
-    printf("Age: %d\n", s.age);
-    printf("Grade: %.2f\n", s.grade);
+    printf("姓名: %s\n", s.name);
+    printf("年龄: %d\n", s.age);
+    printf("成绩: %.2f\n", s.grade);
 }
 int main(void)
 {
